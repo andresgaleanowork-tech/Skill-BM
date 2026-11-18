@@ -1,0 +1,19 @@
+{
+  "_leeme": "Copia este archivo como precios.json en la raíz y sustituye los valores por los de tu hoja. Los precios NO se suben al repositorio: son del área de Iberdrola y caducan.",
+  "fecha_hoja": "2026-11-16",
+  "cargado": "2026-11-17",
+  "productos": {
+    "3.0TD Empresa Flex": {
+      "tp": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "te": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    "6.1TD Empresa Flex": {
+      "tp": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "te": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    },
+    "2.0TD Plan Estable": {
+      "tp": [0.0, 0.0],
+      "te": [0.0]
+    }
+  }
+}

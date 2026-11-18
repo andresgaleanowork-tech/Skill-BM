@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>{{TITULO}} · Informe de ahorro</title><style>
+@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;font:10.4px Arial,sans-serif;line-height:1.33;color:#254054;background:#eef3f5}
+.page{width:210mm;height:297mm;background:white;position:relative;padding:10mm 12mm 18mm;break-after:page}.page:last-child{break-after:auto}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #173d6d;padding-bottom:4mm}header img{width:33mm;height:11mm;object-fit:contain}
+.meta{text-align:center;font-size:9px;color:#5b7488}.eyebrow{font-size:9px;letter-spacing:1px;color:#00894d;font-weight:bold;margin-top:4.5mm}
+h1{font-size:25px;line-height:1.12;color:#173d6d;margin:2.2mm 0 2.6mm}h2{font-size:13.5px;color:#173d6d;margin:4mm 0 1.8mm}p{margin:1.8mm 0}
+.lead{font-size:11.3px;color:#5b7488}.hero{background:#00894d;color:white;padding:4mm 5mm;margin:2.6mm 0}
+.hero .label{font-size:11px;font-weight:bold;letter-spacing:.9px}.hero .value{font-size:46px;font-weight:bold;line-height:1.05;margin:1.6mm 0}
+.hero .sub{font-size:11px}.hero .limit{font-size:9.6px;margin-top:1.4mm}
+.kpis{display:flex;gap:3mm;margin:2.6mm 0}.kpi{flex:1;padding:2.8mm;background:#f0f5f8;border-top:3px solid #173d6d}
+.kpi.green{background:#edf8f1;border-color:#00894d}.kpi b{font-size:19px;color:#173d6d;display:block;margin:.8mm 0}.small{font-size:8.8px;color:#5f7789}
+.callout{background:#edf8f1;border-left:3px solid #00894d;padding:2.8mm;margin:2.6mm 0}.warn{background:#fff3e0;border-left:3px solid #bd882e;padding:2.8mm;margin:2.6mm 0}
+.note{background:#f1f5f8;padding:2.7mm;margin:2.6mm 0;font-size:8.9px}
+table{width:100%;border-collapse:collapse;font-size:9.8px;margin:1.8mm 0}th{background:#173d6d;color:white;text-align:left;padding:1.8mm}
+td{border-bottom:1px solid #dce5eb;padding:1.75mm;vertical-align:top}.num{text-align:right;white-space:nowrap}
+.pos{color:#00894d;font-weight:bold}.tight{font-size:9.2px}.tight td{padding:1.2mm}
+.chart{width:100%;display:block;margin:2mm 0}
+footer{position:absolute;bottom:8mm;left:12mm;right:12mm;display:flex;justify-content:space-between;border-top:1px solid #d5e0e7;padding-top:2.4mm;font-size:8.8px;color:#557084}
+ul{padding-left:4mm;margin:1.8mm 0}li{margin:1.6mm 0}
+</style></head><body>
+
+<!-- PÁGINA 1 · el ahorro en grande. La cifra debe ser la CONSERVADORA. -->
+<section class="page">
+  <header><img src="{{LOGO_BM}}"><div class="meta">{{TITULAR}} · INFORME DE AHORRO ENERGÉTICO<br>{{FECHA}}</div><img src="{{LOGO_IB}}"></header>
+  <div class="eyebrow">01 · AHORRO ANUAL</div>
+  <h1>{{AHORRO}} € menos<br>cada año.</h1>
+  <p class="lead">{{RESUMEN_DE_QUE_SE_COMPARA}}</p>
+  <div class="hero"><div class="label">AHORRO ANUAL ESTIMADO · IMPUESTOS INCLUIDOS</div><div class="value">{{AHORRO}} €</div>
+    <div class="sub">{{TOTAL_ACTUAL}} € → {{TOTAL_NUEVO}} € al año · {{PCT}} % menos</div>
+    <div class="limit">{{QUE_NO_INCLUYE_Y_QUE_ESCENARIO_ALTERNATIVO_EXISTE}}</div></div>
+  <div class="kpis">
+    <div class="kpi green"><span class="small">AHORRO EN EL RECIBO ANALIZADO</span><b>{{AHORRO_MES}} €</b><span class="small">{{MES_ACTUAL}} € → {{MES_NUEVO}} €</span></div>
+    <div class="kpi"><span class="small">AHORRO EN ENERGÍA</span><b>{{PCT_ENERGIA}} %</b><span class="small">Por periodo</span></div>
+    <div class="kpi"><span class="small">CONSUMO ANUAL ACREDITADO</span><b>{{KWH_ANUAL}} kWh</b><span class="small">Según factura</span></div></div>
+  <h2>Qué se ha comparado</h2>{{TABLA_COMPARABLES}}
+  <div class="callout">{{DE_DONDE_VIENE_EL_AHORRO}}</div>
+  <div class="note"><b>Factura verificada al céntimo:</b> {{CADENA_DE_VERIFICACION}}</div>
+  <footer><div><b>Andrés Galeano · Comercial Pymes · B&M Asesores Energéticos, S.L.</b><br>Colaborador de Iberdrola · 671 681 039 · canalpymes@bmae.es · 962 674 769 Ext. 5003</div>
+    <div>{{TITULAR}} · {{CIF}} · {{TARIFA}} · {{POTENCIA}}<br>1/4</div></footer>
+</section>
+
+<!-- PÁGINA 2 · verificación del recibo + comparativa por concepto -->
+<section class="page">
+  <header><img src="{{LOGO_BM}}"><div class="meta">{{TITULAR}} · INFORME DE AHORRO ENERGÉTICO<br>{{FECHA}}</div><img src="{{LOGO_IB}}"></header>
+  <div class="eyebrow">02 · VERIFICACIÓN DEL RECIBO</div>
+  <h1>{{MES}}, al céntimo.<br>Y el mismo mes con la nueva tarifa.</h1>
+  <img class="chart" src="{{GRAFICO_RECIBO}}">
+  {{TABLA_CONCEPTO_A_CONCEPTO}}
+  <div class="callout">{{FRASE_DE_AHORRO_DEL_MES}}</div>
+  <img class="chart" src="{{GRAFICO_PRECIOS}}">
+  <div class="warn">{{DIFERENCIA_DE_TARIFAS_SIN_ADJETIVOS}}</div>
+  <footer><div><b>Andrés Galeano · Comercial Pymes · B&M Asesores Energéticos, S.L.</b><br>Colaborador de Iberdrola · 671 681 039 · canalpymes@bmae.es · 962 674 769 Ext. 5003</div>
+    <div>{{TITULAR}} · {{CIF}} · {{TARIFA}} · {{POTENCIA}}<br>2/4</div></footer>
+</section>
+
+<!-- PÁGINA 3 · proyección anual con supuestos a la vista -->
+<section class="page">
+  <header><img src="{{LOGO_BM}}"><div class="meta">{{TITULAR}} · INFORME DE AHORRO ENERGÉTICO<br>{{FECHA}}</div><img src="{{LOGO_IB}}"></header>
+  <div class="eyebrow">03 · PROYECCIÓN ANUAL</div>
+  <h1>El año completo,<br>con supuestos a la vista.</h1>
+  <img class="chart" src="{{GRAFICO_ANUAL}}">
+  {{TABLA_ANUAL}}
+  <div class="kpis">{{KPIS_ESCENARIOS}}</div>
+  <h2>Supuestos del cálculo, sin adornos</h2><ul>{{LISTA_SUPUESTOS}}</ul>
+  <div class="warn">{{LO_QUE_ESTE_INFORME_NO_AFIRMA}}</div>
+  <footer><div><b>Andrés Galeano · Comercial Pymes · B&M Asesores Energéticos, S.L.</b><br>Colaborador de Iberdrola · 671 681 039 · canalpymes@bmae.es · 962 674 769 Ext. 5003</div>
+    <div>{{TITULAR}} · {{CIF}} · {{TARIFA}} · {{POTENCIA}}<br>3/4</div></footer>
+</section>
+
+<!-- PÁGINA 4 · propuesta y siguientes pasos -->
+<section class="page">
+  <header><img src="{{LOGO_BM}}"><div class="meta">{{TITULAR}} · INFORME DE AHORRO ENERGÉTICO<br>{{FECHA}}</div><img src="{{LOGO_IB}}"></header>
+  <div class="eyebrow">04 · PROPUESTA</div>
+  <h1>{{TITULAR_DE_LA_PROPUESTA}}</h1>
+  {{TABLA_ACTUACIONES}}
+  <div class="note"><b>Precios de comparación:</b> Hoja de precios de Iberdrola del {{FECHA_HOJA}} · {{PRODUCTO}}. Impuesto eléctrico 5,11269632 % e IVA 21 %. Vigencia de la oferta: 30 días.</div>
+  <div class="callout" style="background:#f2f6f8;border-left-color:#173d6d"><b>Quedamos a vuestra disposición</b> para cerrar la contratación. Andrés Galeano · Comercial Pymes · B&M Asesores Energéticos, S.L. · 671 681 039 · canalpymes@bmae.es · Oficina 962 674 769 Ext. 5003</div>
+  <footer><div><b>Andrés Galeano · Comercial Pymes · B&M Asesores Energéticos, S.L.</b><br>Colaborador de Iberdrola · 671 681 039 · canalpymes@bmae.es · 962 674 769 Ext. 5003</div>
+    <div>{{TITULAR}} · {{CIF}} · {{TARIFA}} · {{POTENCIA}}<br>4/4</div></footer>
+</section>
+</body></html>
