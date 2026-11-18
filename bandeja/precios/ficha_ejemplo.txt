@@ -1,0 +1,7 @@
+# Ficha de precios de EJEMPLO para las pruebas. Los valores son ficticios: sirven para
+# comprobar que el cargador lee bien los periodos y los decimales, no para calcular nada real.
+# En producción se copia la ficha de verdad en esta misma carpeta (no se sube al repositorio).
+# Fecha de la hoja: 01/01/2027
+Producto 3.0TD de ejemplo | TP: 11,111111 5,222222 2,333333 1,444444 0,555555 0,333333 | TE: 0,111111 0,099999 0,088888 0,077777 0,066666 0,066666
+Producto 6.1TD de ejemplo | TP: 22,222222 11,111111 5,555555 3,333333 1,111111 0,555555 | TE: 0,123456 0,112345 0,101234 0,090123 0,080012 0,080012
+Producto 2.0TD de ejemplo | TP: 33,33 33,33 | TE: 0,123456

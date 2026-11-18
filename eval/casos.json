@@ -1,0 +1,585 @@
+{
+  "_nota": "Pruebas de aceptación del paquete. Si un cambio hace fallar un caso, el cambio es incorrecto o el caso debe actualizarse a propósito y con justificación. Los precios se cargan a mano (área de Iberdrola bloqueada): los casos comprueban la ficha, no un PDF.",
+  "casos": [
+    {
+      "id": "RT-OCT",
+      "descripcion": "Factura Nagini octubre 2026 (RAFAEL TENA SL) reproducida al céntimo y comparada con Empresa Flex 3.0TD (hoja 16/11/2026)",
+      "herramienta": "calc_energia",
+      "entrada": {
+        "dias": 31,
+        "potencias_kw": [
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5
+        ],
+        "kwh": {
+          "P1": 0,
+          "P2": 0,
+          "P3": 0,
+          "P4": 1154,
+          "P5": 747,
+          "P6": 227
+        },
+        "actual": {
+          "tp": [
+            0.055827,
+            0.029089,
+            0.012278,
+            0.010647,
+            0.006887,
+            0.003951
+          ],
+          "tp_unidad": "dia",
+          "te": [
+            0,
+            0,
+            0,
+            0.296845,
+            0.266114,
+            0.282359
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            20.376927,
+            10.617621,
+            4.481534,
+            3.886333,
+            2.513851,
+            1.442287
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0,
+            0,
+            0,
+            0.157978,
+            0.149284,
+            0.152954
+          ]
+        },
+        "extras": {
+          "excesos": 9.89,
+          "bono_social": 0.77,
+          "bono_social_en_base_iee": false,
+          "alquiler": 11.01,
+          "autoconsumo_kwh": 1217,
+          "autoconsumo_precio_actual": 0.1,
+          "autoconsumo_precio_nuevo": 0.0
+        },
+        "iee": 0.0511269632,
+        "iva": 0.21,
+        "total_factura_real": 836.27
+      },
+      "esperado": {
+        "actual.total": 836.27,
+        "actual.potencia": 152.68,
+        "nuevo.total": 638.88,
+        "ahorro_eur": 197.39,
+        "cuadre.cuadra": true,
+        "cuadre.diferencia": 0.0
+      }
+    },
+    {
+      "id": "RT-POT",
+      "descripcion": "La potencia de Empresa Flex 3.0TD y la de la factura deben coincidir (mismos peajes regulados)",
+      "herramienta": "calc_energia",
+      "entrada_ref": "RT-OCT",
+      "esperado": {
+        "actual.potencia": 152.68,
+        "nuevo.potencia": 152.68
+      }
+    },
+    {
+      "id": "PRECIOS-FLEX30",
+      "descripcion": "Carga manual de precios: producto 3.0TD de la ficha de ejemplo (seis periodos)",
+      "herramienta": "cargar_precios",
+      "entrada": {
+        "ficha": "bandeja/precios/ficha_ejemplo.txt",
+        "producto": "Producto 3.0TD de ejemplo"
+      },
+      "esperado": {
+        "tp": [
+          11.111111,
+          5.222222,
+          2.333333,
+          1.444444,
+          0.555555,
+          0.333333
+        ],
+        "te": [
+          0.111111,
+          0.099999,
+          0.088888,
+          0.077777,
+          0.066666,
+          0.066666
+        ]
+      }
+    },
+    {
+      "id": "PRECIOS-FLEX61",
+      "descripcion": "Carga manual de precios: producto 6.1TD de la ficha de ejemplo",
+      "herramienta": "cargar_precios",
+      "entrada": {
+        "ficha": "bandeja/precios/ficha_ejemplo.txt",
+        "producto": "Producto 6.1TD de ejemplo"
+      },
+      "esperado": {
+        "tp": [
+          22.222222,
+          11.111111,
+          5.555555,
+          3.333333,
+          1.111111,
+          0.555555
+        ],
+        "te": [
+          0.123456,
+          0.112345,
+          0.101234,
+          0.090123,
+          0.080012,
+          0.080012
+        ]
+      }
+    },
+    {
+      "id": "PRECIOS-2TD",
+      "descripcion": "Carga manual de precios: 2.0TD con un solo periodo de energía (dos de potencia)",
+      "herramienta": "cargar_precios",
+      "entrada": {
+        "ficha": "bandeja/precios/ficha_ejemplo.txt",
+        "producto": "Producto 2.0TD de ejemplo"
+      },
+      "esperado": {
+        "tp": [
+          33.33,
+          33.33
+        ],
+        "te": [
+          0.123456
+        ]
+      }
+    },
+    {
+      "id": "NEG-PERIODOS",
+      "herramienta": "calc_negativo",
+      "descripcion": "Consumo en P4 con precio de energía 0: faltan o están desordenados los periodos",
+      "esperado_rc": 2,
+      "esperado_error": "precio de energía es 0",
+      "entrada": {
+        "dias": 31,
+        "potencias_kw": [
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5
+        ],
+        "kwh": {
+          "P1": 0,
+          "P2": 0,
+          "P3": 0,
+          "P4": 1154,
+          "P5": 747,
+          "P6": 227
+        },
+        "actual": {
+          "tp": [
+            0.055827,
+            0.029089,
+            0.012278,
+            0.010647,
+            0.006887,
+            0.003951
+          ],
+          "tp_unidad": "dia",
+          "te": [
+            0.296845,
+            0.266114,
+            0.282359,
+            0,
+            0,
+            0
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            20.376927,
+            10.617621,
+            4.481534,
+            3.886333,
+            2.513851,
+            1.442287
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0.253955,
+            0.209968,
+            0.180518,
+            0.157978,
+            0.149284,
+            0.152954
+          ]
+        },
+        "extras": {}
+      }
+    },
+    {
+      "id": "NEG-DESCUADRE",
+      "herramienta": "calc_negativo",
+      "descripcion": "El total calculado no cuadra con la factura real: no se entrega nada",
+      "esperado_rc": 3,
+      "esperado_error": "DESCUADRE",
+      "entrada": {
+        "dias": 31,
+        "potencias_kw": [
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5
+        ],
+        "kwh": {
+          "P1": 0,
+          "P2": 0,
+          "P3": 0,
+          "P4": 1154,
+          "P5": 747,
+          "P6": 227
+        },
+        "actual": {
+          "tp": [
+            0.055827,
+            0.029089,
+            0.012278,
+            0.010647,
+            0.006887,
+            0.003951
+          ],
+          "tp_unidad": "dia",
+          "te": [
+            0,
+            0,
+            0,
+            0.296845,
+            0.266114,
+            0.282359
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            20.376927,
+            10.617621,
+            4.481534,
+            3.886333,
+            2.513851,
+            1.442287
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0,
+            0,
+            0,
+            0.157978,
+            0.149284,
+            0.152954
+          ]
+        },
+        "extras": {
+          "excesos": 9.89,
+          "bono_social": 0.77,
+          "bono_social_en_base_iee": false,
+          "alquiler": 11.01,
+          "autoconsumo_kwh": 1217,
+          "autoconsumo_precio_actual": 0.1,
+          "autoconsumo_precio_nuevo": 0.0
+        },
+        "total_factura_real": 850.0
+      }
+    },
+    {
+      "id": "NEG-TPUNIDAD",
+      "herramienta": "calc_negativo",
+      "descripcion": "Sin declarar si el término de potencia va en €/kW·año o €/kW·día (el error de factor 365)",
+      "esperado_rc": 2,
+      "esperado_error": "tp_unidad",
+      "entrada": {
+        "dias": 31,
+        "potencias_kw": [
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5,
+          41.5
+        ],
+        "kwh": {
+          "P1": 0,
+          "P2": 0,
+          "P3": 0,
+          "P4": 1154,
+          "P5": 747,
+          "P6": 227
+        },
+        "actual": {
+          "tp": [
+            0.055827,
+            0.029089,
+            0.012278,
+            0.010647,
+            0.006887,
+            0.003951
+          ],
+          "te": [
+            0,
+            0,
+            0,
+            0.296845,
+            0.266114,
+            0.282359
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            20.376927,
+            10.617621,
+            4.481534,
+            3.886333,
+            2.513851,
+            1.442287
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0,
+            0,
+            0,
+            0.157978,
+            0.149284,
+            0.152954
+          ]
+        },
+        "extras": {}
+      }
+    },
+    {
+      "id": "NEG-TRASPUESTAS",
+      "herramienta": "calc_negativo",
+      "descripcion": "Potencias decrecientes en 3.0TD: avisa de que pueden estar traspuestas",
+      "esperado_rc": 0,
+      "esperado_error": "",
+      "esperado_aviso": "no decrecientes",
+      "entrada": {
+        "dias": 31,
+        "potencias_kw": [
+          41.5,
+          20,
+          41.5,
+          41.5,
+          41.5,
+          41.5
+        ],
+        "kwh": {
+          "P1": 0,
+          "P2": 0,
+          "P3": 0,
+          "P4": 1154,
+          "P5": 747,
+          "P6": 227
+        },
+        "actual": {
+          "tp": [
+            0.055827,
+            0.029089,
+            0.012278,
+            0.010647,
+            0.006887,
+            0.003951
+          ],
+          "tp_unidad": "dia",
+          "te": [
+            0,
+            0,
+            0,
+            0.296845,
+            0.266114,
+            0.282359
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            20.376927,
+            10.617621,
+            4.481534,
+            3.886333,
+            2.513851,
+            1.442287
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0,
+            0,
+            0,
+            0.157978,
+            0.149284,
+            0.152954
+          ]
+        },
+        "extras": {}
+      }
+    },
+    {
+      "id": "CALC-2TD",
+      "herramienta": "calc_energia",
+      "descripcion": "2.0TD real: 2 periodos de potencia (punta 4,6 kW a 45,49 €/kW·año y valle a 28,49) y 3 de energía a 0,0999 €/kWh",
+      "entrada": {
+        "dias": 30,
+        "potencias_kw": [
+          4.6,
+          4.6
+        ],
+        "kwh": {
+          "P1": 350,
+          "P2": 200,
+          "P3": 150
+        },
+        "actual": {
+          "tp": [
+            45.49,
+            28.49
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0.0999,
+            0.0999,
+            0.0999
+          ]
+        },
+        "nuevo": {
+          "tp": [
+            45.49,
+            28.49
+          ],
+          "tp_unidad": "anio",
+          "te": [
+            0.0999,
+            0.0999,
+            0.0999
+          ]
+        },
+        "extras": {
+          "alquiler": 0.81
+        },
+        "iee": 0.0511269632,
+        "iva": 0.21
+      },
+      "esperado": {
+        "actual.total": 125.5,
+        "actual.potencia": 27.97,
+        "actual.iee": 5.01,
+        "nuevo.total": 125.5,
+        "ahorro_eur": 0.0
+      }
+    },
+    {
+      "id": "FACT-PDF",
+      "herramienta": "factura_pdf",
+      "descripcion": "De la factura en PDF al cálculo sin teclear nada: 836,27 € reproducidos y 197,39 € de ahorro",
+      "entrada": {
+        "pdf": "bandeja/facturas/factura_tena_26100237.pdf",
+        "producto": "3.0TD Empresa Flex"
+      },
+      "esperado": {
+        "actual.total": 836.27,
+        "nuevo.total": 638.88,
+        "ahorro_eur": 197.39,
+        "cuadre.cuadra": true
+      }
+    },
+    {
+      "id": "PDF-TURBINSA",
+      "herramienta": "factura_pdf",
+      "descripcion": "Iberdrola Clientes: energía en una línea, fianza que resta al total e IEE dentro de ENERGÍA",
+      "entrada": {
+        "pdf": "bandeja/facturas/ejemplos/turbinsa_iberdrola_clientes.pdf"
+      },
+      "esperado": {
+        "actual.total": 195.54,
+        "cuadre.cuadra": true
+      }
+    },
+    {
+      "id": "PDF-OCTOPUS",
+      "herramienta": "factura_pdf",
+      "descripcion": "Octopus: cada término desglosado en peaje+cargos+margen, 2 periodos de potencia y 3 de energía",
+      "entrada": {
+        "pdf": "bandeja/facturas/ejemplos/octopus_tena.pdf",
+        "producto": "2.0TD Plan Estable"
+      },
+      "esperado": {
+        "cuadre.cuadra": true
+      }
+    },
+    {
+      "id": "PDF-FACTOR",
+      "herramienta": "factura_pdf",
+      "descripcion": "Factor Energía: potencia en €/kW·mes con descuento, reactiva y ajuste de REE",
+      "entrada": {
+        "pdf": "bandeja/facturas/ejemplos/factor_energia_eudamonia.pdf"
+      },
+      "esperado": {
+        "actual.total": 1352.82,
+        "cuadre.cuadra": true
+      }
+    },
+    {
+      "id": "ANUAL-SIPS",
+      "herramienta": "anualizar",
+      "descripcion": "Anualización REAL: SIPS de un año + factura con energía agregada → ahorro anual calculado, no proyectado (con el producto de ejemplo)",
+      "entrada": {
+        "sips": "bandeja/facturas/ejemplos/sips_turbinsa.pdf",
+        "factura": "bandeja/facturas/ejemplos/turbinsa_iberdrola_clientes.pdf",
+        "producto": "Producto 3.0TD de ejemplo"
+      },
+      "esperado": {
+        "ahorro_eur": 2700.8,
+        "actual.kwh_total": 15005.5,
+        "comparativa": true
+      }
+    },
+    {
+      "id": "PLANTILLA-INFO",
+      "herramienta": "plantilla",
+      "descripcion": "La plantilla de informe lleva los dos logos en cada una de las cuatro páginas (mismo número de B&M que de Iberdrola) y no deja marcadores sueltos",
+      "entrada": {
+        "tipo": "informe"
+      },
+      "esperado": {
+        "png": 4,
+        "jpeg": 4,
+        "solo_bm": false,
+        "marcadores_logo": 0
+      }
+    },
+    {
+      "id": "PLANTILLA-ACTA",
+      "herramienta": "plantilla",
+      "descripcion": "El acta sale SOLO con el logo de B&M, sin hueco del de Iberdrola",
+      "entrada": {
+        "tipo": "acta"
+      },
+      "esperado": {
+        "png": 1,
+        "jpeg": 0,
+        "solo_bm": true,
+        "marcadores_logo": 0
+      }
+    }
+  ]
+}

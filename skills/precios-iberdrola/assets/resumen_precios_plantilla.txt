@@ -1,0 +1,20 @@
+RESUMEN HOJA DE PRECIOS IBERDROLA · ACTUALIZACIÓN {{FECHA_LARGA}}
+Fuente: Precios/{{NOMBRE_ARCHIVO}} (portada: «última actualización del documento: {{FECHA_LARGA}}»).
+Páginas: {{N_PAGINAS}}. Cifras antes de impuestos y sin servicios.
+{{SUSTITUYE_A}}
+
+=== {{PRODUCTO_1}} ===
+TP €/kW·año: {{TP}}
+TE €/kWh:    {{TE}}
+{{COMPARATIVA_CON_HOJA_ANTERIOR}}
+
+=== OTROS PRODUCTOS DE LA GAMA (referencia) ===
+{{OTROS}}
+
+=== REGLAS DE ELEGIBILIDAD ===
+Empresa Flex, Empresas 10 %TE y Especial 15 %TE son solo para CIF.
+Con NIF, los planes elegibles son Impulsa, Exclusivo, Estable, Especial plus, etc.
+
+=== EFECTO PRÁCTICO ===
+{{EFECTO}}
+Los informes emitidos siguen siendo válidos como fotografía de su fecha. Para reutilizarlos hay que actualizar el precio y recalcular.

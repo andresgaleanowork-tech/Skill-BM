@@ -1,0 +1,69 @@
+{
+  "_nota": "Caso Rafael Tena SL · octubre 2026 · Nagini 3.0TD vs Empresa Flex 3.0TD (hoja 16/11/2026)",
+  "dias": 31,
+  "potencias_kw": [
+    41.5,
+    41.5,
+    41.5,
+    41.5,
+    41.5,
+    41.5
+  ],
+  "kwh": {
+    "P1": 0,
+    "P2": 0,
+    "P3": 0,
+    "P4": 1154,
+    "P5": 747,
+    "P6": 227
+  },
+  "actual": {
+    "tp": [
+      0.055827,
+      0.029089,
+      0.012278,
+      0.010647,
+      0.006887,
+      0.003951
+    ],
+    "te": [
+      0,
+      0,
+      0,
+      0.296845,
+      0.266114,
+      0.282359
+    ],
+    "tp_unidad": "dia"
+  },
+  "nuevo": {
+    "tp": [
+      20.376927,
+      10.617621,
+      4.481534,
+      3.886333,
+      2.513851,
+      1.442287
+    ],
+    "te": [
+      0,
+      0,
+      0,
+      0.157978,
+      0.149284,
+      0.152954
+    ],
+    "tp_unidad": "anio"
+  },
+  "extras": {
+    "excesos": 9.89,
+    "bono_social": 0.77,
+    "alquiler": 11.01,
+    "autoconsumo_kwh": 1217,
+    "autoconsumo_precio_actual": 0.1,
+    "autoconsumo_precio_nuevo": 0.0,
+    "bono_social_en_base_iee": false
+  },
+  "iee": 0.0511269632,
+  "iva": 0.21
+}
